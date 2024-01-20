@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.cute.engineering/stable/cutekit.manifest.component.v1",
+    "id": "ce-libm-dummy",
+    "type": "lib",
+    "description": "Dummy for the ISO C Standard Mathematical Library (ISO/IEC 9899)",
+    "props": {
+        "cpp-root-include": true
+    },
+    "enableIf": {
+        "freestanding": [
+            true
+        ]
+    },
+    "provides": [
+        "stdc-math"
+    ]
+}
