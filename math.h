@@ -1,16 +1,17 @@
 #pragma once
 
 #include <float.h>
-#include <stdc-base/prelude.h>
 
-STDC_BEGIN_HEADER
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #ifndef NAN
-#    define NAN (0.0 / 0.0)
+#define NAN (0.0 / 0.0)
 #endif
 
 #ifndef INFINITY
-#    define INFINITY (1.0 / 0.0)
+#define INFINITY (1.0 / 0.0)
 #endif
 
 int abs(int x);
@@ -29,15 +30,16 @@ long double fabsl(long double x);
 #define M_2_PI (M_PI * 2.0)
 #define M_2_SQRTPI 1.12837916709551257390 /* 2/sqrt(pi) */
 
-#if defined(_XHJ_OPEN_SOURCE) || defined(_GNU_SOURCE) || defined(_BSD_SOURCE) || defined(_SKIFT_SOURCE)
-#    define M_E 2.7182818284590452354       /* e */
-#    define M_LOG2E 1.4426950408889634074   /* log_2 e */
-#    define M_LOG10E 0.43429448190325182765 /* log_10 e */
-#    define M_LN2 0.69314718055994530942    /* log_e 2 */
-#    define M_LN10 2.30258509299404568402   /* log_e 10 */
+#if defined(_XHJ_OPEN_SOURCE) || defined(_GNU_SOURCE) ||                       \
+    defined(_BSD_SOURCE) || defined(_SKIFT_SOURCE)
+#define M_E 2.7182818284590452354       /* e */
+#define M_LOG2E 1.4426950408889634074   /* log_2 e */
+#define M_LOG10E 0.43429448190325182765 /* log_10 e */
+#define M_LN2 0.69314718055994530942    /* log_e 2 */
+#define M_LN10 2.30258509299404568402   /* log_e 10 */
 
-#    define M_SQRT2 1.41421356237309504880   /* sqrt(2) */
-#    define M_SQRT1_2 0.70710678118654752440 /* 1/sqrt(2) */
+#define M_SQRT2 1.41421356237309504880   /* sqrt(2) */
+#define M_SQRT1_2 0.70710678118654752440 /* 1/sqrt(2) */
 
 extern int signgam;
 
@@ -52,7 +54,7 @@ double yn(int, double);
 #endif
 
 #if defined(_GNU_SOURCE) || defined(_BSD_SOURCE) || defined(_SKIFT_SOURCE)
-#    define HUGE 3.40282346638528859812e+38F
+#define HUGE 3.40282346638528859812e+38F
 
 double drem(double, double);
 float dremf(float, float);
@@ -102,8 +104,12 @@ int __fpclassify(double x);
 int __fpclassifyf(float x);
 int __fpclassifyl(long double x);
 
-#define fpclassify(x) \
-    (sizeof(x) == sizeof(double) ? __fpclassify(x) : (sizeof(x) == sizeof(float) ? __fpclassifyf(x) : (sizeof(x) == sizeof(long double) ? __fpclassifyl(x) : 0)))
+#define fpclassify(x)                                                          \
+  (sizeof(x) == sizeof(double)                                                 \
+       ? __fpclassify(x)                                                       \
+       : (sizeof(x) == sizeof(float)                                           \
+              ? __fpclassifyf(x)                                               \
+              : (sizeof(x) == sizeof(long double) ? __fpclassifyl(x) : 0)))
 
 #define isfinite(x) (fpclassify(x) & (FP_NORMAL | FP_SUBNORMAL | FP_ZERO))
 #define isnan(x) (fpclassify(x) == FP_NAN)
@@ -366,4 +372,6 @@ double fma(double, double, double);
 float fmaf(float, float, float);
 long double fmal(long double, long double, long double);
 
-STDC_END_HEADER
+#ifdef __cplusplus
+}
+#endif
