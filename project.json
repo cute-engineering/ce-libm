@@ -1,0 +1,6 @@
+{
+    "$schema": "https://schemas.cute.engineering/stable/cutekit.manifest.project.v1",
+    "id": "cute-engineering/ce-libm",
+    "type": "project",
+    "description": "Cute Engineering Standard Math Library"
+}
