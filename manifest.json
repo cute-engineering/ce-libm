@@ -1,0 +1,20 @@
+{
+    "$schema": "https://schemas.cute.engineering/stable/cutekit.manifest.component.v1",
+    "id": "ce-libm",
+    "type": "lib",
+    "description": "The ISO C standard math library, ISO/IEC 9899",
+    "props": {
+        "cpp-root-include": true
+    },
+    "enableIf": {
+        "host": [
+            false
+        ],
+        "freestanding": [
+            false
+        ]
+    },
+    "provides": [
+        "stdc-math"
+    ]
+}
