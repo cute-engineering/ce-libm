@@ -59,7 +59,6 @@ extern "C" {
 typedef struct {
     uint32_t __control_word;
     uint32_t __status_word;
-    uint32_t __unused[5];
     uint32_t __mxcsr;
 } fenv_t;
 
